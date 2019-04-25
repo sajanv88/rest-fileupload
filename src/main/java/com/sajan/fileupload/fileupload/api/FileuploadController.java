@@ -21,11 +21,10 @@ public class FileuploadController {
 	@Autowired
 	FileuploadService fs;
 
-    @PostMapping(path = "/file/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<FileResponseModel> upload(
-    		@RequestParam("file") MultipartFile file) throws IOException {
-    	File newFile = new File("./"+file.getOriginalFilename());
-    	FileResponseModel frm = fs.upload(newFile, file.getBytes());
-        return new ResponseEntity<FileResponseModel>(frm, HttpStatus.ACCEPTED);
-    }
+	@PostMapping(path = "/file/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<FileResponseModel> upload(@RequestParam("file") MultipartFile file) throws IOException {
+		File newFile = new File("./"+file.getOriginalFilename());
+		FileResponseModel frm = fs.upload(newFile, file.getBytes());
+		return new ResponseEntity<FileResponseModel>(frm, HttpStatus.ACCEPTED);
+	}
 }

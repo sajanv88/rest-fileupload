@@ -17,9 +17,9 @@ public class FileuploadService {
 	
 	public FileResponseModel upload(File file, byte[] b) throws IOException {
 		Cloudinary c = FileUploadConfig.cloudinaryInstance();
-    	FileOutputStream fo = new FileOutputStream(file);
-    	fo.write(b);
-    	fo.close();
+		FileOutputStream fo = new FileOutputStream(file);
+		fo.write(b);
+		fo.close();
 		Map uploadResult = c.uploader().upload(file, ObjectUtils.emptyMap());
 		this.clean(file.getName());
 		return new FileResponseModel(uploadResult);
